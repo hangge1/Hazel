@@ -51,15 +51,20 @@ Game Engine
 
 ## P5入口点
 
-将依赖游戏引擎的main函数入口，封装到游戏引擎内部。
+将依赖游戏引擎的游戏main函数入口，封装到游戏引擎内部。
 
-通过extern 一个CreateApplication接口，让游戏端实现这个接口，从而能够创建应用，运行！
+通过extern一个CreateApplication接口，让引擎依赖游戏端实现的这个接口，从而在main创建并运行！
 
 有一点依赖倒置的感觉！
 
 
 
+## P6 日志
 
+使用spdlog日志库！
 
+通过子模块引入：`git submodule add https://gitee.com/roberchen/spdlog.git Hazel/vendor/spdlog`
 
+封装自己的Log，给本身的spdlog进行包装一层。
 
+好处：可控、统一、间接、便利、更换别的日志库容易等！
