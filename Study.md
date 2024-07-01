@@ -1,3 +1,5 @@
+## P3 设计游戏引擎
+
 Game Engine
 
 1、Entry Point
@@ -29,7 +31,7 @@ Game Engine
 
 
 
-
+## P4 项目设置
 
 **vs项目设置：**
 
@@ -46,6 +48,14 @@ Game Engine
 
 
 
+
+## P5入口点
+
+将依赖游戏引擎的main函数入口，封装到游戏引擎内部。
+
+通过extern 一个CreateApplication接口，让游戏端实现这个接口，从而能够创建应用，运行！
+
+有一点依赖倒置的感觉！
 
 
 
