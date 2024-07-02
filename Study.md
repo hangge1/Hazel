@@ -125,13 +125,23 @@ pchsource "Hazel/src/hzpch.cpp"
 
 
 
+通过创建WIndow接口层，增加跨平台窗口支持的灵活性
+
+提供Platform平台相关代码，实现Windows平台下的具体窗口类！
 
 
 
+## P12窗口事件
+
+Window-> SendEvent->Application->Entity
 
 
 
+这里面巧妙的实现了低耦合的Window->Application的通信：
 
+Window提供设置回调的public接口，此接口绑定到Application的成员函数。
+
+通过glfw绑定回调，根据不同的窗口事件，创建事件投递、通知Application执行，Application可根据自己要求捕获需要的事件！
 
 
 
