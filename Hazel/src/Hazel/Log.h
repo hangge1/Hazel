@@ -1,9 +1,5 @@
 #pragma once
 
-//#define SPDLOG_FMT_PRINTF
-
-#include <memory>
-
 #include "Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
