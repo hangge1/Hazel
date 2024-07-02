@@ -117,7 +117,11 @@ pchsource "Hazel/src/hzpch.cpp"
 
 
 
+## P11窗口抽象和GLFW
 
+暂且使用GLFW，它跨平台而且简洁！
+
+如何链接github上的glfw库，到自己的项目！
 
 
 
