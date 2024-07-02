@@ -51,7 +51,7 @@ project "Hazel"
         systemversion "latest"
 
         defines
-        {
+        { 
             "HZ_PLATFORM_WINDOWS",
             "HZ_BUILD_DLL"
         }
@@ -62,7 +62,11 @@ project "Hazel"
         }
 
     filter "configurations:Debug"
-        defines "HZ_DEBUG"
+        defines 
+        {
+            "HZ_DEBUG",
+            "HZ_ENABLE_ASSERTS"
+        }
         symbols "On"
 
     filter "configurations:Release"
