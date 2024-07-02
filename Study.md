@@ -68,3 +68,29 @@ Game Engine
 封装自己的Log，给本身的spdlog进行包装一层。
 
 好处：可控、统一、间接、便利、更换别的日志库容易等！
+
+
+
+## P7 premake构建系统
+
+为了处理不同平台的问题，vs只能在windows上！
+
+premake相比CMake很简单，用lua编写，很方便！
+
+关于premake的构建系统的语法：
+
+[premake](https://premake.github.io/docs/What-Is-Premake)
+
+
+
+通过premake构建vs2022
+
+最后写个bat批处理，执行premake的构建
+
+脚本非常简单：
+
+```bat
+call vendor\bin\premake\premake5.exe vs2022
+PAUSE
+```
+
