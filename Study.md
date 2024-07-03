@@ -149,6 +149,64 @@ Window提供设置回调的public接口，此接口绑定到Application的成员
 
 ## P13 Layers
 
+Layer分层的目的，是为了划分事件传播的优先级。比如：UI层肯定比Game层要先响应鼠标事件等
+
+这里分为：覆盖层和普通层
+
+封装Layer层类
+
+封装LayerStack类，用于管理很多层
+
+
+
+
+
+## P14 现代OpenGL和Glad
+
+OpenGL系列用的GLEW，这次用GLAD
+
+Glad也是作为vendor的一类，给它写一个premake，作为一个单独的项目！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

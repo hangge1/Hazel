@@ -10,9 +10,9 @@ namespace Hazel {
 	public:
 		LayerStack();
 		~LayerStack();
-		//添加普通层，放在开头(最后处理事件)
+		//添加普通层，放在开头(最先渲染，最后处理事件)
 		void PushLayer(Layer* layer);
-		//加入覆盖层，放在末尾(最先处理事件)
+		//加入覆盖层，放在末尾(最后渲染，最先处理事件)
 		void PushOverlay(Layer* overlay);
 		void PopLayer(Layer* layer);
 		void PopOverlay(Layer* overlay);
