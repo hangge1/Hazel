@@ -8,6 +8,8 @@ workspace "Hazel"
         "Dist"
     }
 
+    startproject "Sandbox"
+
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
@@ -19,10 +21,13 @@ include "Hazel/vendor/GLFW"
 include "Hazel/vendor/Glad"
 include "Hazel/vendor/imgui"
 
+
+
 project "Hazel"
     location "Hazel"
     kind "SharedLib"
     language "C++"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -55,7 +60,6 @@ project "Hazel"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -76,23 +80,25 @@ project "Hazel"
             "HZ_DEBUG",
             "HZ_ENABLE_ASSERTS"
         }
-        buildoptions "/MDd"
         symbols "On"
+        runtime "Debug"
 
     filter "configurations:Release"
         defines "HZ_RELEASE"
-        buildoptions "/MD"
         optimize "On"
+        runtime "Release"
+
 
     filter "configurations:Dist"
         defines "HZ_DIST"
-        buildoptions "/MD"
         optimize "On"
+        runtime "Release"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
+    staticruntime "off"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -116,7 +122,6 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -126,15 +131,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "HZ_DEBUG"
-        buildoptions "/MDd"
         symbols "On"
+        runtime "Debug"
 
     filter "configurations:Release"
         defines "HZ_RELEASE"
-        buildoptions "/MD"
         optimize "On"
+        runtime "Release"
 
     filter "configurations:Dist"
         defines "HZ_DIST"
-        buildoptions "/MD"
         optimize "On"
+        runtime "Release"
