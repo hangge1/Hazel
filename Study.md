@@ -173,6 +173,76 @@ Glad也是作为vendor的一类，给它写一个premake，作为一个单独的
 
 ## P15 Imgui
 
+为了引入Imgui，我们需要继承Layer，实现支持Imgui的ImGuiLayer类
+
+同时为了支持Imgui的交互功能，我们需要移植原本的基于OpenGL实现的Renderer的代码！
+
+
+
+
+
+## P16 Imgui事件
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
