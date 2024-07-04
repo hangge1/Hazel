@@ -7,10 +7,10 @@
 class Sandbox : public Hazel::Application
 {
 public:
+
 	Sandbox()
 	{
 		PushLayer(new Hazel::ExampleLayer());
-		PushOverlay(new Hazel::ImGuiLayer());
 	}
 
 	~Sandbox()
