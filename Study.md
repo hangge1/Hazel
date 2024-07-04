@@ -225,19 +225,49 @@ Glad也是作为vendor的一类，给它写一个premake，作为一个单独的
 
 
 
+## P23 渲染
+
+渲染的最终目的就是计算屏幕上每个像素的颜色！
+
+虽然OpenGL在几乎所有平台都能用！这既是优点又是缺点！
+
+
+
+Windows上最好的就是Direct12
+
+IOS最好的就是Metal
+
+linux上最好的就是Vulkan
+
+
+
+多尝试学习不同的图形API，这样抽象才会有根据科研！
 
 
 
 
 
+## P24 渲染架构
 
+游戏引擎中的渲染系统，有两个方面：
 
+**1、Render API（platform specific）**
 
+- Render Context
+- Swap Chain
+- FrameBuffer
+- Vertex Buffer
+- Index Buffer
+- Texture
+- Shader
+- States
+- Pipelines
+- Render Passes
 
+**2、Renderer（platform agnostic）**
 
-
-
-
+- 2D & 3D Renderer
+- Scene Graph
 
 
 
