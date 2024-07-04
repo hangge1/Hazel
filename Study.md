@@ -183,7 +183,13 @@ Glad也是作为vendor的一类，给它写一个premake，作为一个单独的
 
 ## P16 Imgui事件
 
+继承Layer，实现ImGuiLayer子类。通过OnEvent，根据事件类型，通过事件分发器分发到对应处理函数。这些处理函数就是需要移植的imgui事件处理！
 
+
+
+
+
+这里准备fork原本cherno的imgui和glfw库，然后submodule add自己的库
 
 
 
