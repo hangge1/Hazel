@@ -3,9 +3,10 @@
 
 
 #include "Hazel/Application.h"
-
 #include "Hazel/Events/KeyEvent.h"
 #include "Hazel/KeyCodes.h"
+
+#include "imgui.h"
 
 namespace Hazel {
 
@@ -31,6 +32,13 @@ namespace Hazel {
 	void ExampleLayer::OnUpdate()
 	{
 		
+	}
+
+	void ExampleLayer::OnImGuiRender()
+	{
+		ImGui::Begin("Text");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void ExampleLayer::OnEvent(Event& event)

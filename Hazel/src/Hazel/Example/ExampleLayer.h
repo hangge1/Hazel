@@ -17,6 +17,7 @@ namespace Hazel {
 		void OnAttach();
 		void OnDetach();
 		void OnUpdate();
+		virtual void OnImGuiRender() override;
 		void OnEvent(Event& event);
 	private:
 		float m_Time = 0.0f;
