@@ -1,6 +1,7 @@
 [submodule "Hazel/vendor/spdlog"]
 	path = Hazel/vendor/spdlog
-	url = https://gitee.com/roberchen/spdlog.git
+	url = https://github.com/gabime/spdlog.git
+	branch = master
 [submodule "Hazel/vendor/GLFW"]
 	path = Hazel/vendor/GLFW
 	url = git@github.com:hangge1/glfw.git
