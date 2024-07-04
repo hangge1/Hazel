@@ -189,13 +189,11 @@ Glad也是作为vendor的一类，给它写一个premake，作为一个单独的
 
 
 
-这里准备fork原本cherno的imgui和glfw库，然后submodule add自己的库
+>  这里准备fork原本cherno的imgui和glfw库，然后submodule add自己的库
 
 
 
-
-
-
+## P19 Input轮询
 
 
 
