@@ -39,7 +39,7 @@ namespace Hazel {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(HZ_BIND_EVENT_FN(Application::OnWindowClose));
 
-		HZ_CORE_TRACE("{0}", e);
+		//HZ_CORE_TRACE("{0}", e);
 
 		//¥”∏≤∏«≤„->∆’Õ®≤„
 		for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
