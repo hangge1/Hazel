@@ -26,14 +26,14 @@ namespace Hazel {
 #define HZ_CORE_INFO(...)  ::Hazel::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define HZ_CORE_WARN(...)  ::Hazel::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define HZ_CORE_ERROR(...) ::Hazel::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define HZ_CORE_FATAL(...) ::Hazel::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define HZ_CORE_CRITICAL(...) ::Hazel::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 //Client log macros
 #define HZ_TRACE(...) ::Hazel::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define HZ_INFO(...)  ::Hazel::Log::GetClientLogger()->info(__VA_ARGS__)
 #define HZ_WARN(...)  ::Hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define HZ_ERROR(...) ::Hazel::Log::GetClientLogger()->error(__VA_ARGS__)
-#define HZ_FATAL(...) ::Hazel::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define HZ_CRITICAL(...) ::Hazel::Log::GetClientLogger()->critical(__VA_ARGS__)
 
 
 //Log Obj
@@ -41,12 +41,12 @@ namespace Hazel {
 #define HZ_CORE_OBJ_INFO(obj)  ::Hazel::Log::GetCoreLogger()->info("{0}",obj)
 #define HZ_CORE_OBJ_WARN(obj)  ::Hazel::Log::GetCoreLogger()->warn("{0}",obj)
 #define HZ_CORE_OBJ_ERROR(obj) ::Hazel::Log::GetCoreLogger()->error("{0}",obj)
-#define HZ_CORE_OBJ_FATAL(obj) ::Hazel::Log::GetCoreLogger()->critical("{0}",obj)
+#define HZ_CORE_OBJ_CRITICAL(obj) ::Hazel::Log::GetCoreLogger()->critical("{0}",obj)
 
 #define HZ_OBJ_TRACE(obj) ::Hazel::Log::GetClientLogger()->trace("{0}",obj)
 #define HZ_OBJ_INFO(obj)  ::Hazel::Log::GetClientLogger()->info("{0}",obj)
 #define HZ_OBJ_WARN(obj)  ::Hazel::Log::GetClientLogger()->warn("{0}",obj)
 #define HZ_OBJ_ERROR(obj) ::Hazel::Log::GetClientLogger()->error("{0}",obj)
-#define HZ_OBJ_FATAL(obj) ::Hazel::Log::GetClientLogger()->critical("{0}",obj)
+#define HZ_OBJ_CRITICAL(obj) ::Hazel::Log::GetClientLogger()->critical("{0}",obj)
 
 // if dist build
