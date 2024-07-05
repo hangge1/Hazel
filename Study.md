@@ -268,6 +268,15 @@ linux上最好的就是Vulkan
 
 - 2D & 3D Renderer
 - Scene Graph
+- Sorting
+- Culling
+- Materials
+- LOD
+- Animation
+- Camera
+- VFX（粒子特效等）
+- PostFX（后期处理特性）
+- Other things（reflection、ambient occlusion）
 
 
 
