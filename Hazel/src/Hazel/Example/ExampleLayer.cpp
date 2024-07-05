@@ -1,4 +1,6 @@
 #include "hzpch.h"
+
+#include "imgui.h"
 #include "ExampleLayer.h"
 
 
@@ -6,7 +8,7 @@
 #include "Hazel/Events/KeyEvent.h"
 #include "Hazel/KeyCodes.h"
 
-#include "imgui.h"
+
 
 namespace Hazel {
 
