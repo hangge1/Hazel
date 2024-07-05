@@ -2,9 +2,9 @@
 #include "Application.h"
 #include "Hazel/Events/ApplicationEvent.h"
 
-#include "glad/glad.h"
-
+#include "Hazel/Renderer/Renderer.h"
 #include "Hazel/Renderer/Shader.h"
+#include "Hazel/Renderer/RenderCommand.h"
 
 namespace Hazel {
 
@@ -114,15 +114,15 @@ namespace Hazel {
 	void Application::Run()
 	{
 		while (m_Running)
-		{
-			glClearColor(1, 0, 1, 1);
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+		{		
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+			RenderCommand::Clear();
 
+			Renderer::BeginScene();
+				m_Shader->Bind();
+				Renderer::Submit(m_VertexArray);
+			Renderer::EndScene();
 
-			m_Shader->Bind();
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
