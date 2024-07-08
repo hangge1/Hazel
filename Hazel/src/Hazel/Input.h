@@ -9,6 +9,10 @@ namespace Hazel {
 	class HAZEL_API Input
 	{
 	public:
+		Input(const Input&) = delete;
+		Input& operator=(const Input&) = delete;
+
+	public:
 		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
 
 		inline static bool IsMouseButtonPressed(int button) { return s_Instance->IsMouseButtonPressedImpl(button); }
@@ -16,6 +20,8 @@ namespace Hazel {
 		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); }
 		inline static float GetMouseY() { return s_Instance->GetMouseYImpl(); }
 	protected:
+		Input() = default;
+
 		virtual bool IsKeyPressedImpl(int keycode) = 0;
 
 		virtual bool IsMouseButtonPressedImpl(int button) = 0;
