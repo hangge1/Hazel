@@ -2,22 +2,11 @@
 #include <Hazel.h>
 
 #include "imgui.h"
-
-#include "Hazel/ImGui/ImGuiLayer.h"
-
-#include "Hazel/Renderer/Shader.h"
-#include "Hazel/Renderer/Buffer.h"
-#include "Hazel/Renderer/VertexArray.h"
-
-#include "Hazel/Renderer/OrthographicCamera.h"
-
 #include "Hazel/Layer.h"
 #include "Hazel/Events/ApplicationEvent.h"
-#include "Hazel/Events/KeyEvent.h"
-#include "Hazel/Events/MouseEvent.h"
 
-#include "Hazel/Renderer/RenderCommand.h"
-#include "Hazel/Renderer/Renderer.h"
+
+
 
 #include <memory>
 
@@ -98,10 +87,29 @@ public:
 
 	}
 
-	void OnUpdate()
+	void OnUpdate(Hazel::Timestep ts)
 	{
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
+		else if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
+
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_W))
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
+		else if (Hazel::Input::IsKeyPressed(HZ_KEY_S))
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
+
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_Q))
+			m_CameraRotation += m_CameraRotationSpeed * ts;
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_E))
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
+
+
 		Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Hazel::RenderCommand::Clear();
+
+		m_Camera.SetPosition(m_CameraPosition);
+		m_Camera.SetRotation(m_CameraRotation);
 
 		Hazel::Renderer::BeginScene(m_Camera);
 
@@ -122,16 +130,16 @@ public:
 
 	void OnEvent(Hazel::Event& event)
 	{
-		//HZ_TRACE("{0}", event);
-		if (event.GetEventType() == Hazel::EventType::KeyPressed)
-		{
-			Hazel::KeyPressedEvent& e = (Hazel::KeyPressedEvent&)event;
-			if (e.GetKeyCode() == HZ_KEY_TAB)
-				HZ_TRACE("Tab key is pressed (event)!");
-			HZ_TRACE("{0}", (char)e.GetKeyCode());
+		////HZ_TRACE("{0}", event);
+		//if (event.GetEventType() == Hazel::EventType::KeyPressed)
+		//{
+		//	Hazel::KeyPressedEvent& e = (Hazel::KeyPressedEvent&)event;
+		//	if (e.GetKeyCode() == HZ_KEY_TAB)
+		//		HZ_TRACE("Tab key is pressed (event)!");
+		//	HZ_TRACE("{0}", (char)e.GetKeyCode());
 
-			event.Handled = true;
-		}
+		//	event.Handled = true;
+		//}
 	}
 private:
 	std::shared_ptr<Hazel::Shader> m_Shader;

@@ -1,15 +1,17 @@
 #pragma once
 
-#include "hzpch.h"
 #include "Core.h"
+#include "Window.h"
 #include "Hazel/LayerStack.h"
 #include "Events/Event.h"
-#include "Window.h"
 #include "Hazel/Events/ApplicationEvent.h"
 
-#include "Hazel/ImGui/ImGuiLayer.h"
+
 
 namespace Hazel {
+
+	class ImGuiLayer;
+	class Window;
 
 	class HAZEL_API Application
 	{
@@ -32,10 +34,13 @@ namespace Hazel {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};
