@@ -11,7 +11,7 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
 
-
+#include "glm/ext.hpp"
 
 class HAZEL_API ExampleLayer : public Hazel::Layer
 {
@@ -82,6 +82,7 @@ public:
 		m_Shader.reset(Hazel::Shader::Create(vertexSrc, fragmentSrc));
 
 		m_Texture = Hazel::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_ChernoLogoTexture = Hazel::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_Shader)->Bind();
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_Shader)->UploadUniformInt("u_Texture", 0);
@@ -130,6 +131,9 @@ public:
 		m_Texture->Bind();
 		Hazel::Renderer::Submit(m_Shader, m_VertexArray);
 
+		m_ChernoLogoTexture->Bind();
+		Hazel::Renderer::Submit(m_Shader, m_VertexArray, glm::translate(glm::mat4(1.0f),glm::vec3(2.0f,0.0f,0.0f)));
+
 		Hazel::Renderer::EndScene();
 	}
 
@@ -161,6 +165,8 @@ private:
 	Hazel::Ref<Hazel::VertexArray> m_SquareVA;
 
 	Hazel::Ref<Hazel::Texture2D> m_Texture;
+	Hazel::Ref<Hazel::Texture2D> m_ChernoLogoTexture;
+	
 
 	Hazel::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
