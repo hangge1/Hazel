@@ -46,7 +46,7 @@ public:
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
-		m_Shader.reset(Hazel::Shader::Create("assets/shaders/Texture.glsl"));
+		m_Shader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Hazel::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = Hazel::Texture2D::Create("assets/textures/ChernoLogo.png");
@@ -125,6 +125,7 @@ public:
 		//}
 	}
 private:
+	Hazel::ShaderLibrary m_ShaderLibrary;
 	Hazel::Ref<Hazel::Shader> m_Shader;
 	Hazel::Ref<Hazel::VertexArray> m_VertexArray;
 
