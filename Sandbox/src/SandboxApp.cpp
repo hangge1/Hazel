@@ -1,4 +1,6 @@
 
+#include <memory>
+
 #include <Hazel.h>
 
 #include "imgui.h"
@@ -6,9 +8,9 @@
 #include "Hazel/Events/ApplicationEvent.h"
 
 
+#include "Platform/OpenGL/OpenGLShader.h"
 
 
-#include <memory>
 
 class HAZEL_API ExampleLayer : public Hazel::Layer
 {
@@ -68,7 +70,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new Hazel::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Hazel::Shader::Create(vertexSrc, fragmentSrc));
 	}
 	~ExampleLayer(){}
 
