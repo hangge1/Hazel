@@ -19,10 +19,10 @@ public:
 		  m_CameraPosition(0.0f)
 	{
 		//==================================================================
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+		float vertices[3 * 3] = {
+			-0.5f, -0.5f, 0.0f,
+			 0.5f, -0.5f, 0.0f,
+			 0.0f,  0.5f, 0.0f
 		};
 
 		m_VertexArray.reset(Hazel::VertexArray::Create());
@@ -30,8 +30,7 @@ public:
 		std::shared_ptr<Hazel::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Hazel::BufferLayout layout = {
-			{ Hazel::ShaderDataType::Float3, "a_Position" },
-			{ Hazel::ShaderDataType::Float4, "a_Color" }
+			{ Hazel::ShaderDataType::Float3, "a_Position" }
 		};
 		vertexBuffer->SetLayout(layout);
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
@@ -46,17 +45,15 @@ public:
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
-			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
-			out vec4 v_Color;
 			void main()
 			{
 				v_Position = a_Position;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position, 1.0);	
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
 			}
 		)";
 
@@ -65,11 +62,9 @@ public:
 			
 			layout(location = 0) out vec4 color;
 			in vec3 v_Position;
-			in vec4 v_Color;
 			void main()
 			{
 				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
 			}
 		)";
 
