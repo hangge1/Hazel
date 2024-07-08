@@ -124,10 +124,11 @@ namespace Hazel {
 
 			Renderer::BeginScene(m_Camera);
 
-			m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
+			m_Camera.SetPosition({ 0.0f, 0.0f, 0.0f });
 			m_Camera.SetRotation(45.0f);
-				m_Shader->Bind();
-				Renderer::Submit(m_Shader, m_VertexArray);
+			m_Shader->Bind();
+			Renderer::Submit(m_Shader, m_VertexArray);
+
 			Renderer::EndScene();
 
 
