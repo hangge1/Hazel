@@ -18,8 +18,7 @@ class HAZEL_API ExampleLayer : public Hazel::Layer
 public:
 	ExampleLayer()
 		: Hazel::Layer("ExampleLayer"),
-		  m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), 
-		  m_CameraPosition(0.0f)
+		  m_CameraController(1280.0f / 720.0f)
 	{
 		//==================================================================
 		float squareVertices[5 * 4] = {
@@ -68,33 +67,17 @@ public:
 
 	void OnUpdate(Hazel::Timestep ts)
 	{
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
-
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_W))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-		else if (Hazel::Input::IsKeyPressed(HZ_KEY_S))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_Q))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_E))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
+		m_CameraController.OnUpdate(ts);
 
 
 		Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Hazel::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
 
-		Hazel::Renderer::BeginScene(m_Camera);
+		Hazel::Renderer::BeginScene(m_CameraController.GetCamera());
 
-		m_Camera.SetPosition({ 0.0f, 0.0f, 0.0f });
-		m_Camera.SetRotation(45.0f);
 		m_Shader->Bind();
+
 		m_Texture->Bind();
 		Hazel::Renderer::Submit(m_Shader, m_VertexArray);
 
@@ -113,16 +96,7 @@ public:
 
 	void OnEvent(Hazel::Event& event)
 	{
-		////HZ_TRACE("{0}", event);
-		//if (event.GetEventType() == Hazel::EventType::KeyPressed)
-		//{
-		//	Hazel::KeyPressedEvent& e = (Hazel::KeyPressedEvent&)event;
-		//	if (e.GetKeyCode() == HZ_KEY_TAB)
-		//		HZ_TRACE("Tab key is pressed (event)!");
-		//	HZ_TRACE("{0}", (char)e.GetKeyCode());
-
-		//	event.Handled = true;
-		//}
+		m_CameraController.OnEvent(event);
 	}
 private:
 	Hazel::ShaderLibrary m_ShaderLibrary;
@@ -136,12 +110,7 @@ private:
 	Hazel::Ref<Hazel::Texture2D> m_ChernoLogoTexture;
 	
 
-	Hazel::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Hazel::OrthographicCameraController m_CameraController;
 };
 
 class Sandbox : public Hazel::Application
