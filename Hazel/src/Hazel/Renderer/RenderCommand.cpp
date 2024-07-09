@@ -3,8 +3,10 @@
 
 #include "Platform/OpenGL/OpenGLRendererAPI.h"
 
+//#include "Hazel/Core/Core.h"
+
 namespace Hazel {
 
-	RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI();
+	Scope<RendererAPI> RenderCommand::s_RendererAPI = CreateScope<OpenGLRendererAPI>();
 
 }
