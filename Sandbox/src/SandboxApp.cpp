@@ -2,6 +2,7 @@
 #include <memory>
 
 #include <Hazel.h>
+#include "Hazel/Core/EntryPoint.h"
 
 #include "imgui.h"
 #include "Hazel/Core/Layer.h"
@@ -12,6 +13,8 @@
 #include "Platform/OpenGL/OpenGLTexture.h"
 
 #include "glm/ext.hpp"
+
+#include "Sandbox2D.h"
 
 class HAZEL_API ExampleLayer : public Hazel::Layer
 {
@@ -28,10 +31,10 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		m_VertexArray.reset(Hazel::VertexArray::Create());
+		m_VertexArray = Hazel::VertexArray::Create();
 
 		Hazel::Ref<Hazel::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		vertexBuffer = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		Hazel::BufferLayout layout = {
 			{ Hazel::ShaderDataType::Float3, "a_Position" },
 			{ Hazel::ShaderDataType::Float2, "a_TexCoord" }
@@ -41,7 +44,7 @@ public:
 
 		uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
 		Hazel::Ref<Hazel::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		indexBuffer = Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
@@ -119,7 +122,8 @@ public:
 
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()
