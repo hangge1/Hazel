@@ -1,14 +1,14 @@
 #pragma once
 
 #include "hzpch.h"
-#include "Layer.h"
+#include "Hazel/Core/Layer.h"
 
 namespace Hazel {
 
-	class HAZEL_API LayerStack
+	class LayerStack
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 		//添加普通层，放在开头(最先渲染，最后处理事件)
 		void PushLayer(Layer* layer);

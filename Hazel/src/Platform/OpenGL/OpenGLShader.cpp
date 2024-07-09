@@ -1,11 +1,12 @@
 #include "hzpch.h"
-#include "OpenGLShader.h"
 
 #include <array>
 #include <fstream>
 
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Hazel {
 

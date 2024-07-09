@@ -6,7 +6,7 @@ namespace Hazel {
 
 	//Input 接口类
 	//通过暴露public static方法，获得平台相关的调用接口！
-	class HAZEL_API Input
+	class Input
 	{
 	public:
 		Input(const Input&) = delete;

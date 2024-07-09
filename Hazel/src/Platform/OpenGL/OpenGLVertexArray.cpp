@@ -1,7 +1,9 @@
 #include "hzpch.h"
-#include "OpenGLVertexArray.h"
 
 #include <glad/glad.h>
+
+#include "Platform/OpenGL/OpenGLVertexArray.h"
+
 
 namespace Hazel {
 

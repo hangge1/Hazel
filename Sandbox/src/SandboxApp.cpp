@@ -1,22 +1,20 @@
 
 #include <memory>
 
-#include <Hazel.h>
-#include "Hazel/Core/EntryPoint.h"
+#include <imgui.h>
+#include <glm/ext.hpp>
 
-#include "imgui.h"
+#include <Hazel.h>
+#include <Hazel/Core/EntryPoint.h>
 #include "Hazel/Core/Layer.h"
 #include "Hazel/Events/ApplicationEvent.h"
-
 
 #include "Platform/OpenGL/OpenGLShader.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
 
-#include "glm/ext.hpp"
-
 #include "Sandbox2D.h"
 
-class HAZEL_API ExampleLayer : public Hazel::Layer
+class  ExampleLayer : public Hazel::Layer
 {
 public:
 	ExampleLayer()
@@ -33,8 +31,7 @@ public:
 
 		m_VertexArray = Hazel::VertexArray::Create();
 
-		Hazel::Ref<Hazel::VertexBuffer> vertexBuffer;
-		vertexBuffer = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
+		Hazel::Ref<Hazel::VertexBuffer> vertexBuffer = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		Hazel::BufferLayout layout = {
 			{ Hazel::ShaderDataType::Float3, "a_Position" },
 			{ Hazel::ShaderDataType::Float2, "a_TexCoord" }
@@ -43,18 +40,17 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[6] = { 0, 1, 2, 2, 3, 0 };
-		Hazel::Ref<Hazel::IndexBuffer> indexBuffer;
-		indexBuffer = Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+		Hazel::Ref<Hazel::IndexBuffer> indexBuffer = Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
-		m_Shader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Hazel::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_ChernoLogoTexture = Hazel::Texture2D::Create("assets/textures/ChernoLogo.png");
 
-		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_Shader)->Bind();
-		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_Shader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 	~ExampleLayer(){}
 
@@ -79,13 +75,12 @@ public:
 
 		Hazel::Renderer::BeginScene(m_CameraController.GetCamera());
 
-		m_Shader->Bind();
-
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 		m_Texture->Bind();
-		Hazel::Renderer::Submit(m_Shader, m_VertexArray);
+		Hazel::Renderer::Submit(textureShader, m_VertexArray);
 
 		m_ChernoLogoTexture->Bind();
-		Hazel::Renderer::Submit(m_Shader, m_VertexArray, glm::translate(glm::mat4(1.0f),glm::vec3(2.0f,0.0f,0.0f)));
+		Hazel::Renderer::Submit(textureShader, m_VertexArray, glm::translate(glm::mat4(1.0f),glm::vec3(2.0f,0.0f,0.0f)));
 
 		Hazel::Renderer::EndScene();
 	}
@@ -103,16 +98,11 @@ public:
 	}
 private:
 	Hazel::ShaderLibrary m_ShaderLibrary;
-	Hazel::Ref<Hazel::Shader> m_Shader;
 	Hazel::Ref<Hazel::VertexArray> m_VertexArray;
-
-	Hazel::Ref<Hazel::Shader> m_BlueShader;
-	Hazel::Ref<Hazel::VertexArray> m_SquareVA;
 
 	Hazel::Ref<Hazel::Texture2D> m_Texture;
 	Hazel::Ref<Hazel::Texture2D> m_ChernoLogoTexture;
 	
-
 	Hazel::OrthographicCameraController m_CameraController;
 };
 
