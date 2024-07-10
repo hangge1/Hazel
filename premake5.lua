@@ -55,6 +55,12 @@ project "Hazel"
 		"%{prj.name}/vendor/stb_image/**.cpp"
     }
 
+    defines
+    {
+        "_CRT_SECURE_NO_WARNINGS",
+		"GLFW_INCLUDE_NONE"
+    }
+
     includedirs
     {
         "%{prj.name}/src",
@@ -76,13 +82,6 @@ project "Hazel"
 
     filter "system:windows"
         systemversion "latest"
-
-        defines
-        { 
-            "HZ_PLATFORM_WINDOWS",
-            "HZ_BUILD_DLL",
-            "GLFW_INCLUDE_NONE"
-        }
 
         postbuildcommands
         {
@@ -140,11 +139,6 @@ project "Sandbox"
 
     filter "system:windows"
         systemversion "latest"
-
-        defines
-        {
-            "HZ_PLATFORM_WINDOWS"
-        }
 
     filter "configurations:Debug"
         defines "HZ_DEBUG"
