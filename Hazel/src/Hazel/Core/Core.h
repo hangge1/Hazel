@@ -3,7 +3,9 @@
 #include <memory>
 
 #ifdef HZ_DEBUG
-	#define HZ_ENABLE_ASSERTS
+	#ifndef HZ_ENABLE_ASSERTS
+		#define HZ_ENABLE_ASSERTS
+	#endif
 #endif
 
 #ifdef HZ_ENABLE_ASSERTS
