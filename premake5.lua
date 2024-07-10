@@ -1,5 +1,6 @@
 workspace "Hazel"
-    architecture "x64"
+    architecture "x86_64"
+    startproject "Sandbox"
 
     configurations
     {
@@ -11,9 +12,7 @@ workspace "Hazel"
     flags
 	{
 		"MultiProcessorCompile"
-	}
-
-    startproject "Sandbox"
+	}  
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
