@@ -59,6 +59,10 @@ namespace Hazel {
 		m_LayerStack.PopOverlay(layer);
 	}
 
+	void Application::Close()
+	{
+		m_Running = false;
+	}
 
 	void Application::OnEvent(Event& e)
 	{
